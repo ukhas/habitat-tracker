@@ -1,0 +1,44 @@
+@import "elements.less"; // see http://lesselements.com
+
+html {
+  height: 100%
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0
+}
+
+#map {
+  height: 100%
+}
+
+.info-box {
+  background-color: rgba(255, 255, 255, 0.7);
+
+  font-family: 'Helvetica Neue', 'HelveticaNeue', 'Helvetica-Neue', Helvetica, Arial, sans-serif;
+  font-size: 9px;
+  display: inline-block;
+  white-space: nowrap;
+  margin: 10px 0 0 10px;
+  padding: 3px;
+  .rounded(5px);
+  .drop-shadow(1px, 1px, 4px, 0.2);
+
+  .altitude {
+    font-size: 11px;
+  }
+
+  .callsign {
+    font-size: 12px;
+    font-weight: 400;
+  }
+}
+
+#chart {
+  position: absolute;
+  left: 25%;
+  width: 50%; height: 150px;
+  bottom: 20px;
+}

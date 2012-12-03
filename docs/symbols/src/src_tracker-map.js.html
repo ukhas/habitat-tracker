@@ -1,0 +1,89 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="NAME">goog.provide</span><span class="PUNC">(</span><span class="STRN">'habitat.tracker.Map'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>  2</span> 
+<span class='line'>  3</span> </span><span class="NAME">goog.require</span><span class="PUNC">(</span><span class="STRN">'goog.object'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>  4</span> 
+<span class='line'>  5</span> 
+<span class='line'>  6</span> 
+<span class='line'>  7</span> </span><span class="COMM">/**
+<span class='line'>  8</span>  * Creates an instance of a Map.
+<span class='line'>  9</span>  *
+<span class='line'> 10</span>  * @this {habitat.tracker.Map}
+<span class='line'> 11</span>  * @extends {google.maps.Map} google.maps.Map
+<span class='line'> 12</span>  * @param {HTMLElement} element DOM element that should be used for the map.
+<span class='line'> 13</span>  * @param {Object.&lt;string, *>=} opt_options MapOptions.
+<span class='line'> 14</span>  * @see &lt;a href="https://developers.google.com/maps/documentation/javascript
+<span class='line'> 15</span>  * /reference#MapOptions">google.maps.MapOptions&lt;/a>
+<span class='line'> 16</span>  * @constructor
+<span class='line'> 17</span>  * @export
+<span class='line'> 18</span>  */</span><span class="WHIT">
+<span class='line'> 19</span> </span><span class="NAME">habitat.tracker.Map</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">element</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">opt_options</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 20</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">options</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 21</span> </span><span class="WHIT">    </span><span class="NAME">center</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">google.maps.LatLng</span><span class="PUNC">(</span><span class="NUMB">52</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NUMB">0.5</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 22</span> </span><span class="WHIT">    </span><span class="NAME">zoom</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">8</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 23</span> </span><span class="WHIT">    </span><span class="NAME">mapTypeId</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">google.maps.MapTypeId.ROADMAP</span><span class="WHIT">
+<span class='line'> 24</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 25</span> </span><span class="WHIT">  </span><span class="NAME">goog.object.extend</span><span class="PUNC">(</span><span class="NAME">options</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">opt_options</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 26</span> 
+<span class='line'> 27</span> </span><span class="WHIT">  </span><span class="NAME">google.maps.Map.call</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">element</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">options</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 28</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 29</span> </span><span class="NAME">goog.inherits</span><span class="PUNC">(</span><span class="NAME">habitat.tracker.Map</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">google.maps.Map</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 30</span> 
+<span class='line'> 31</span> 
+<span class='line'> 32</span> </span><span class="COMM">/**
+<span class='line'> 33</span>  * Converts from LatLng to pixel position.
+<span class='line'> 34</span>  *
+<span class='line'> 35</span>  * @export
+<span class='line'> 36</span>  * @this {habitat.tracker.Map}
+<span class='line'> 37</span>  * @param {google.maps.LatLng} position Position to convert.
+<span class='line'> 38</span>  * @return {google.maps.Point} Pixel position.
+<span class='line'> 39</span>  */</span><span class="WHIT">
+<span class='line'> 40</span> </span><span class="NAME">habitat.tracker.Map.prototype.fromLatLngToPixel</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">position</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 41</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">scale</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">Math.pow</span><span class="PUNC">(</span><span class="NUMB">2</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.getZoom</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 42</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">proj</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.getProjection</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 43</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">bounds</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.getBounds</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 44</span> 
+<span class='line'> 45</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">nw</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">proj.fromLatLngToPoint</span><span class="PUNC">(</span><span class="WHIT">
+<span class='line'> 46</span> </span><span class="WHIT">      </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">google.maps.LatLng</span><span class="PUNC">(</span><span class="WHIT">
+<span class='line'> 47</span> </span><span class="WHIT">          </span><span class="NAME">bounds.getNorthEast</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">lat</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 48</span> </span><span class="WHIT">          </span><span class="NAME">bounds.getSouthWest</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">lng</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 49</span> </span><span class="WHIT">      </span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 50</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">point</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">proj.fromLatLngToPoint</span><span class="PUNC">(</span><span class="NAME">position</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 51</span> 
+<span class='line'> 52</span> </span><span class="WHIT">  </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">google.maps.Point</span><span class="PUNC">(</span><span class="WHIT">
+<span class='line'> 53</span> </span><span class="WHIT">      </span><span class="NAME">Math.floor</span><span class="PUNC">(</span><span class="PUNC">(</span><span class="NAME">point.x</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">nw.x</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">*</span><span class="WHIT"> </span><span class="NAME">scale</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 54</span> </span><span class="WHIT">      </span><span class="NAME">Math.floor</span><span class="PUNC">(</span><span class="PUNC">(</span><span class="NAME">point.y</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">nw.y</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">*</span><span class="WHIT"> </span><span class="NAME">scale</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 55</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 56</span> 
+<span class='line'> 57</span> 
+<span class='line'> 58</span> </span><span class="COMM">/**
+<span class='line'> 59</span>  * Converts from pixel position to LatLng.
+<span class='line'> 60</span>  *
+<span class='line'> 61</span>  * @export
+<span class='line'> 62</span>  * @this {habitat.tracker.Map}
+<span class='line'> 63</span>  * @param {google.maps.Point} pixel Position to convert.
+<span class='line'> 64</span>  * @return {google.maps.LatLng} LatLng position.
+<span class='line'> 65</span>  */</span><span class="WHIT">
+<span class='line'> 66</span> </span><span class="NAME">habitat.tracker.Map.prototype.fromPixelToLatLng</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">pixel</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 67</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">scale</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">Math.pow</span><span class="PUNC">(</span><span class="NUMB">2</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.getZoom</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 68</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">proj</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.getProjection</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 69</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">bounds</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.getBounds</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 70</span> 
+<span class='line'> 71</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">nw</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">proj.fromLatLngToPoint</span><span class="PUNC">(</span><span class="WHIT">
+<span class='line'> 72</span> </span><span class="WHIT">      </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">google.maps.LatLng</span><span class="PUNC">(</span><span class="WHIT">
+<span class='line'> 73</span> </span><span class="WHIT">          </span><span class="NAME">bounds.getNorthEast</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">lat</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 74</span> </span><span class="WHIT">          </span><span class="NAME">bounds.getSouthWest</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">lng</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 75</span> </span><span class="WHIT">      </span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 76</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">point</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">google.maps.Point</span><span class="PUNC">(</span><span class="WHIT">
+<span class='line'> 77</span> </span><span class="WHIT">      </span><span class="NAME">pixel.x</span><span class="WHIT"> </span><span class="PUNC">/</span><span class="WHIT"> </span><span class="NAME">scale</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">nw.x</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 78</span> </span><span class="WHIT">      </span><span class="NAME">pixel.y</span><span class="WHIT"> </span><span class="PUNC">/</span><span class="WHIT"> </span><span class="NAME">scale</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">nw.y</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 79</span> 
+<span class='line'> 80</span> </span><span class="WHIT">  </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">proj.fromPointToLatLng</span><span class="PUNC">(</span><span class="NAME">point</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 81</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 82</span> </span></pre></body></html>
